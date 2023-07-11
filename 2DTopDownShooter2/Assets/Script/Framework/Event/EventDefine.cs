@@ -8,7 +8,7 @@ namespace Assets.Scripts.Framework.Event
 {
     public enum EventDefine
     {
-        ClickStartBtn,
+        ClickHelloBtn, // 点击HelloBtn
 
     }
 }

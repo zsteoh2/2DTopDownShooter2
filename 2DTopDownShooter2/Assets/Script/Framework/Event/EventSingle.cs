@@ -20,7 +20,7 @@ namespace Assets.Scripts.Framework.Event
         /// </summary>
         /// <param name="define">事件定义</param>
         /// <param name="action">准备用来处理事件的委托函数</param>
-        public void AddListener<T>(EventDefine define, UnityAction<T> action) where T : IEventArgs
+        public void AddListener(EventDefine define, UnityAction<IEventArgs> action)
         {
             //判断字典里有没有对应这个事件，有就执行，没有就加进去。
             if (eventDic.ContainsKey(define))
@@ -51,7 +51,7 @@ namespace Assets.Scripts.Framework.Event
         /// </summary>
         /// <param name="define">事件</param>
         /// <param name="action">委托函数</param>
-        public void RemoveListener<T>(EventDefine define, UnityAction<T> action) where T : IEventArgs
+        public void RemoveListener(EventDefine define, UnityAction<IEventArgs> action)
         {
             if (eventDic.ContainsKey(define))
             {
@@ -84,14 +84,14 @@ namespace Assets.Scripts.Framework.Event
         /// 发送事件
         /// </summary>
         /// <param name="define">发送的事件定义</param>
-        public void SendEvent<T>(EventDefine define, T info = default) where T : IEventArgs
+        public void SendEvent(EventDefine define, IEventArgs info = default)
         {
             if (eventDic.ContainsKey(define))
             {
-                var action = eventDic[define] as UnityAction<T>;
-                if (action != null)
+                var handler = eventDic[define] as UnityAction<IEventArgs>;
+                if (handler != null)
                 {
-                    action.Invoke(info);
+                    handler.Invoke(info);
                 }
             }
         }
