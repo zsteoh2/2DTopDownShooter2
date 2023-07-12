@@ -13,11 +13,11 @@ public class Bullet : MonoBehaviour
     {
         switch(other.gameObject.tag)
         {
-            case "Wall":
-                Impact();
-                 break;
+            case TagManager.Wall_Tag:
+                Impact();                
+                break;
 
-            case "Enemy":
+            case TagManager.Enemy_Tag:
                 //other.GameObject.GetComponent<MyEnemyScript>().TakeDamage();
                 //Handle Enemy Collision
                 Impact();
