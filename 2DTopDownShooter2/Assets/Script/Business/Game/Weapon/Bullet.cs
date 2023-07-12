@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
     public Rigidbody2D rb;
     public GameObject impactEffect;
 
-
+     
     public void OnTriggerEnter2D(Collider2D other)
     {
         switch(other.gameObject.tag)
@@ -18,8 +18,14 @@ public class Bullet : MonoBehaviour
                 break;
 
             case TagManager.Enemy_Tag:
-                //other.GameObject.GetComponent<MyEnemyScript>().TakeDamage();
+                other.gameObject.GetComponent<Enemy>().TakeDamage(1);
+
+                //if(other.gameObject.TryGetComponent<Enemy>(out Enemy enemyComponent))
+                //{
+                //    enemyComponent.TakeDamage(1);
+                //}
                 //Handle Enemy Collision
+
                 Impact();
                   break;
         }   
