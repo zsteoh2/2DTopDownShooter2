@@ -38,6 +38,12 @@ public class PlayerController : MonoBehaviour
         {
             weapon.Fire();
         }
+        
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            weapon.Reload();
+        }
+
 
         moveDirection = new Vector2(moveX, moveY).normalized;
         mousePosition = sceneCamera.ScreenToWorldPoint(Input.mousePosition);
