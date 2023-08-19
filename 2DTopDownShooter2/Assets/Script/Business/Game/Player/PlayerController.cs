@@ -10,11 +10,18 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     public Rigidbody2D rb;
     public Weapon weapon;
+    public Animator playerAnimator;
+    public bool isWalking;
 
     private Vector2 moveDirection;
 
     private Vector2 mousePosition;
 
+
+    private void Start()
+    {
+        playerAnimator = transform.Find("PlayerSprite").GetComponent<Animator>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -34,6 +41,9 @@ public class PlayerController : MonoBehaviour
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
+        //Check if the player is walking
+        isWalking = (Mathf.Abs(moveX) > 0.1f || Mathf.Abs(moveY) > 0.1f);
+
         if(Input.GetMouseButtonDown(0))
         {
             weapon.Fire();
@@ -47,6 +57,10 @@ public class PlayerController : MonoBehaviour
 
         moveDirection = new Vector2(moveX, moveY).normalized;
         mousePosition = sceneCamera.ScreenToWorldPoint(Input.mousePosition);
+
+        //Update the "isWalking" parameter in the Animator
+        playerAnimator.SetBool("isWalking", isWalking);
+
     }
 
   
