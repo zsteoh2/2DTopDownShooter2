@@ -14,10 +14,13 @@ public class Enemy : MonoBehaviour
     Rigidbody2D rb;
     Transform target;
     Vector2 moveDirection;
+    PlayerAwareness _playerAwarenessController;
+    Vector2 targetDirection;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();    
+        rb = GetComponent<Rigidbody2D>();
+        _playerAwarenessController = GetComponent<PlayerAwareness>();
     }
 
 
@@ -29,21 +32,32 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if(target)
+        if (_playerAwarenessController.AwareOfPlayer)
         {
-            Vector3 direction = (target.position - transform.position).normalized;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            rb.rotation = angle;
-            moveDirection = direction;
+            if (target)
+            {
+                Vector3 direction = (target.position - transform.position).normalized;
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                rb.rotation = angle;
+                moveDirection = direction;
+            }
         }
     }
 
     private void FixedUpdate()
     {
-        if(target)
+        if (_playerAwarenessController.AwareOfPlayer) 
         {
-            rb.velocity = new Vector2(moveDirection.x, moveDirection.y) * moveSpeed;
+            if (target)
+            {
+                rb.velocity = new Vector2(moveDirection.x, moveDirection.y) * moveSpeed;
+            }
         }
+        else
+        {
+            rb.velocity = Vector2.zero;
+        }
+        
     }
 
 
