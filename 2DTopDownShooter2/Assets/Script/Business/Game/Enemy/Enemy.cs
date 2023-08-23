@@ -9,14 +9,16 @@ public class Enemy : MonoBehaviour
     public static event Action<Enemy> OnEnemyKilled;
 
     [SerializeField] float health, maxHealth = 3f;
-
     [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float rotationSpeed = 180f; // Adjust the rotation speed
 
     Rigidbody2D rb;
     Transform target;
     Vector2 moveDirection;
     PlayerAwareness _playerAwarenessController;
     Vector2 targetDirection;
+    float changeDirectionCooldown = 0f; // Add a cooldown timer
+
 
     private void Awake()
     {
@@ -24,7 +26,6 @@ public class Enemy : MonoBehaviour
         _playerAwarenessController = GetComponent<PlayerAwareness>();
         moveDirection = transform.up;
     }
-
 
     private void Start()
     {
@@ -44,16 +45,23 @@ public class Enemy : MonoBehaviour
                 moveDirection = direction;
                 rb.velocity = new Vector2(moveDirection.x, moveDirection.y) * moveSpeed;
             }
-         
-              
         }
         else
         {
-            // Wandering behavior when not aware of the player
-            if (rb.velocity.magnitude < 0.01f)
+            // Check if it's time to change direction randomly
+            if (changeDirectionCooldown <= 0f)
             {
                 // Change moveDirection to a random direction
                 moveDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+                changeDirectionCooldown = Random.Range(1f, 5f); // Set a new cooldown
+
+                // Adjust the enemy's rotation to match the random moveDirection
+                float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
+                rb.rotation = angle;
+            }
+            else
+            {
+                changeDirectionCooldown -= Time.deltaTime;
             }
 
             rb.velocity = moveDirection * moveSpeed;
@@ -62,26 +70,25 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_playerAwarenessController.AwareOfPlayer) 
+        if (_playerAwarenessController.AwareOfPlayer)
         {
             if (target)
             {
                 rb.velocity = new Vector2(moveDirection.x, moveDirection.y) * moveSpeed;
             }
-           
-        }        
+        }
     }
-
 
     public void TakeDamage(float damageAmount)
     {
-        health -= damageAmount; //敌人生命进入倒数，直至0 = 敌人死亡
+        health -= damageAmount;
 
-        if(health <= 0)
+        if (health <= 0)
         {
             Destroy(gameObject);
             OnEnemyKilled?.Invoke(this);
         }
     }
-
 }
+
+
