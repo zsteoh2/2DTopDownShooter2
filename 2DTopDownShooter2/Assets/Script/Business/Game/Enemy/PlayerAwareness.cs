@@ -20,7 +20,7 @@ public class PlayerAwareness : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
         Vector2 enemyToPlayerVector = _player.position - transform.position;

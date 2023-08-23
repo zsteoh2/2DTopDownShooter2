@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class Enemy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         _playerAwarenessController = GetComponent<PlayerAwareness>();
+        moveDirection = transform.up;
     }
 
 
@@ -40,7 +42,21 @@ public class Enemy : MonoBehaviour
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
                 rb.rotation = angle;
                 moveDirection = direction;
+                rb.velocity = new Vector2(moveDirection.x, moveDirection.y) * moveSpeed;
             }
+         
+              
+        }
+        else
+        {
+            // Wandering behavior when not aware of the player
+            if (rb.velocity.magnitude < 0.01f)
+            {
+                // Change moveDirection to a random direction
+                moveDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+            }
+
+            rb.velocity = moveDirection * moveSpeed;
         }
     }
 
@@ -52,12 +68,8 @@ public class Enemy : MonoBehaviour
             {
                 rb.velocity = new Vector2(moveDirection.x, moveDirection.y) * moveSpeed;
             }
-        }
-        else
-        {
-            rb.velocity = Vector2.zero;
-        }
-        
+           
+        }        
     }
 
 

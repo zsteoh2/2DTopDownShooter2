@@ -45,9 +45,15 @@ TagManager:
   - name: Environment
     uniqueID: 3000995501
     locked: 0
-  - name: Enemy
-    uniqueID: 3630354615
+  - name: Collectable
+    uniqueID: 2477794313
+    locked: 0
+  - name: Bullet
+    uniqueID: 2354813275
     locked: 0
   - name: Player
     uniqueID: 1819801219
+    locked: 0
+  - name: Enemy
+    uniqueID: 3630354615
     locked: 0
