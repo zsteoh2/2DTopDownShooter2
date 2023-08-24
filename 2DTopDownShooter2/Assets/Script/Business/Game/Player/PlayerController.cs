@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     public Camera sceneCamera;
 
+    
+    [SerializeField]public float screenBorder;
     public float moveSpeed;
     public Rigidbody2D rb;
     public Weapon weapon;
@@ -67,12 +69,29 @@ public class PlayerController : MonoBehaviour
     void Move()
     {
         rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
-
+        preventPlayerGoingOffScreen();
         //Rotate player to follow mouse
 
         Vector2 aimDirection = mousePosition - rb.position;
         float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f;
         rb.rotation = aimAngle;
 
+  
+
     }
+
+    private void preventPlayerGoingOffScreen()
+    {
+        Vector2 screenPosition = sceneCamera.WorldToScreenPoint(transform.position);
+
+        if((screenPosition.x < screenBorder && rb.velocity.x < 0) || (screenPosition.x > sceneCamera.pixelWidth - screenBorder && rb.velocity.x > 0))
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
+
+        if ((screenPosition.y < screenBorder && rb.velocity.y < 0) || (screenPosition.y > sceneCamera.pixelHeight - screenBorder && rb.velocity.y > 0))
+        {
+            rb.velocity = new Vector2(rb.velocity.x, 0);
+        }
+    }    
 }

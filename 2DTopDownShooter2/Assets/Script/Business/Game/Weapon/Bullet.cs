@@ -7,8 +7,18 @@ public class Bullet : MonoBehaviour
 
     public Rigidbody2D rb;
     public GameObject impactEffect;
+    public Camera sceneCamera;
 
-     
+    private void Awake()
+    {
+        sceneCamera = Camera.main;
+    }
+
+    private void Update()
+    {
+        destroyWhenOffScreen();
+    }
+
     public void OnTriggerEnter2D(Collider2D other)
     {
         switch(other.gameObject.tag)
@@ -29,6 +39,16 @@ public class Bullet : MonoBehaviour
                 Impact();
                   break;
         }   
+    }
+
+    private void destroyWhenOffScreen()
+    {
+        Vector2 screenPosition = sceneCamera.WorldToScreenPoint(transform.position);
+        
+        if(screenPosition.x < 0 || screenPosition.x > sceneCamera.pixelWidth || screenPosition.y < 0 || screenPosition.y > sceneCamera.pixelHeight)
+        {
+            Destroy(gameObject);
+        }
     }
 
 

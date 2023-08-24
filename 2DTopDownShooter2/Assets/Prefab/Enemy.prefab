@@ -136,7 +136,8 @@ MonoBehaviour:
   maxHealth: 3
   moveSpeed: 5
   rotationSpeed: 180
-  spriteHolder: {fileID: 2593629481660135782}
+  screenBorder: -100
+  sceneCamera: {fileID: 0}
 --- !u!50 &2593629481993893763
 Rigidbody2D:
   serializedVersion: 4
