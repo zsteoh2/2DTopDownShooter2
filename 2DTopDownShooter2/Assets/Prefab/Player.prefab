@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1819801219
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 769534713, guid: 0a4bbaf160246d3488c132af7c974bf0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 2770606277342770406}
   - component: {fileID: 2770606277342770403}
   - component: {fileID: 2770606277342770402}
+  - component: {fileID: 282026630541867745}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -177,6 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneCamera: {fileID: 0}
+  screenBorder: 30
   moveSpeed: 10
   rb: {fileID: 2770606277342770406}
   weapon: {fileID: 5977804943122809220}
@@ -198,6 +200,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.11079846}
   serializedVersion: 2
   m_Radius: 0.52121675
+--- !u!114 &282026630541867745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2770606277342770407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b434492da34c9ec4db36d415db0e68ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 10
+  maximumHealth: 10
 --- !u!1 &2770606277542744959
 GameObject:
   m_ObjectHideFlags: 0
