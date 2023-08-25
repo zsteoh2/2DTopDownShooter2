@@ -3395,10 +3395,6 @@ PrefabInstance:
       propertyPath: sceneCamera
       value: 
       objectReference: {fileID: 519420031}
-    - target: {fileID: 2593629481993893762, guid: 24ff97d94930d1549894963185b0c58a, type: 3}
-      propertyPath: screenBorder
-      value: -100
-      objectReference: {fileID: 0}
     - target: {fileID: 2593629481993893886, guid: 24ff97d94930d1549894963185b0c58a, type: 3}
       propertyPath: m_Name
       value: Enemy
