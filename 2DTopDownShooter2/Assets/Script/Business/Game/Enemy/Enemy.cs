@@ -28,6 +28,7 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         _playerAwarenessController = GetComponent<PlayerAwareness>();
         moveDirection = transform.up;
+        sceneCamera = Camera.main;
     }
 
     private void Start()

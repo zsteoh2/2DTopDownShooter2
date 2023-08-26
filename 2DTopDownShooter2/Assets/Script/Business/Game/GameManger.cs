@@ -27,6 +27,12 @@ public class GameManger : MonoBehaviour
         UpdateEnemiesLeftText();
     }
 
+    private void Update()
+    {
+        enemies = GameObject.FindObjectsOfType<Enemy>().ToList();
+        UpdateEnemiesLeftText();
+    }
+
     void UpdateEnemiesLeftText()
     {
         enemiesLeftText.text = $"Enemies left : {enemies.Count}";

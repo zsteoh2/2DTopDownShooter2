@@ -7,8 +7,10 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField]private float currentHealth;
     [SerializeField] private float maximumHealth;
+
     public UnityEvent OnDied;
     public UnityEvent OnDamaged;
+    public UnityEvent OnHealthChanged;
 
     public float remainingHealthPercentage
     {
@@ -36,6 +38,8 @@ public class PlayerHealth : MonoBehaviour
 
         currentHealth -= damageAmount;
 
+        OnHealthChanged.Invoke();
+
         if(currentHealth < 0)
         {
             currentHealth = 0;
@@ -59,6 +63,8 @@ public class PlayerHealth : MonoBehaviour
         }
 
         currentHealth += amountToAdd;
+
+        OnHealthChanged.Invoke();
 
         if(currentHealth > maximumHealth)
         {
