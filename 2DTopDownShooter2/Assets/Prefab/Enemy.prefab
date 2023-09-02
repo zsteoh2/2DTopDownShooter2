@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 854735749393913184}
   - component: {fileID: 7350392614427381380}
   - component: {fileID: 1601365532197516181}
+  - component: {fileID: 821894512}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -224,3 +225,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &821894512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2593629481993893886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae4a51e8f24a9aa4cb59b67fe5be2a22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  droppedItemPrefab: {fileID: 998924318956169784, guid: b5e82c12227549443bc7ef45e2351b85, type: 3}
+  lootList:
+  - {fileID: 11400000, guid: 027aff898ce248d4894d6da93d5e3eb3, type: 2}

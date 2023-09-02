@@ -115,9 +115,15 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0)
         {
-            Destroy(gameObject);
+            Die();
             OnEnemyKilled?.Invoke(this);
         }
+    }
+
+    void Die()
+    {
+        GetComponent<LootBag>().InstantiateLoot(transform.position);
+        Destroy(gameObject);
     }
 }
 
