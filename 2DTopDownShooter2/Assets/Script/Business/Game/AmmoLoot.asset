@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd17988aaecb8854fb321d0a8ae589cf, type: 3}
   m_Name: AmmoLoot
   m_EditorClassIdentifier: 
-  lootSprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  lootName: Ammo
+  lootSprite: {fileID: 1394314081, guid: fc57dde7c56b90e4da51058f2d61c7be, type: 3}
+  lootName: PistolAmmo
   dropChance: 30
